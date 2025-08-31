@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Hardy-Weinberg Equilibrium Explorer</title>
+
+  <!-- your external stylesheet -->
+  <link rel="stylesheet" href="/static/ass1.css">
+
+  <!-- Plotly (interactive 3D surface) -->
+  <script src="https://cdn.plot.ly/plotly-3.1.0.min.js" charset="utf-8"></script>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <!-- frontend logic -->
+  <script defer src="/static/ass1.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Hardy–Weinberg Equilibrium Explorer</h1>
+    <button id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="icon">☀️</span>
+    </button>
+  </header>
+
+  <main>
+    <section id="controls">
+      <label for="numAlleles">Number of alleles</label>
+      <select id="numAlleles">
+        <option value="2">2</option>
+        <option value="3" selected>3</option>
+      </select>
+
+      <div id="alleleInputs">
+        <div class="field">
+          <label for="p">p (Allele A)</label>
+          <input type="number" id="p" step="0.01" min="0" max="1" value="0.33" placeholder="0-1">
+        </div>
+        <div class="field">
+          <label for="q">q (Allele B)</label>
+          <input type="number" id="q" step="0.01" min="0" max="1" value="0.33" placeholder="0-1">
+        </div>
+        <div class="field" id="rField">
+          <label for="r">r (Allele C)</label>
+          <input type="number" id="r" step="0.01" min="0" max="1" value="0.34" placeholder="0-1">
+        </div>
+      </div>
+      
+      <div class="actions">
+        <label for="genotypeSelect">Plot genotype:</label>
+        <select id="genotypeSelect" multiple>
+          <option value="A1A1">A1A1</option>
+          <option value="A2A2">A2A2</option>
+          <option value="A3A3">A3A3</option>
+          <option value="A1A2">A1A2</option>
+          <option value="A1A3">A1A3</option>
+          <option value="A2A3">A2A3</option>
+        </select>
+      
+        <div class="actions-row">
+          <label for="resolution">Resolution:</label>
+          <input id="resolution" type="number" value="150" min="10" max="300" step="10">
+          <center><button id="plotBtn" aria-label="Plot 3D genotype frequency surfaces">Plot 3D Surfaces</button></center>
+          <center><button id="simplexBtn" aria-label="Plot 2D ternary genotype frequency simplex">Plot 2D ternary</button></center>
+        </div>
+        <div class="actions-row">
+        <center><button id="computeBtn" aria-label="Compute genotype frequencies">Verify numeric consistency</button></center>
+        </div>
+      </div>
+    </section>
+
+    <section id="outputs">
+      <h2>Algebraic derivation</h2>
+      <div id="derivation" class="math-output" style="font-size: 1.2em;"></div>
+
+      <h2>Numeric result</h2>
+      <pre id="results"></pre>
+
+      <h2>3D visualization (p, q, frequency)</h2>
+      <div id="plot" style="height:520px;"></div>
+
+      <h2>Simplex (ternary plot)</h2>
+      <div id="simplex" style="height:520px;"></div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>HW Explorer — 2 & 3 allele systems. Algebraic derivations (MathJax) + interactive plots (Plotly).</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,351 @@
+/* style.css
+   Clean, minimal styling for the Hardy-Weinberg Explorer frontend.
+   Adjust colors/spacing to match your taste.
+*/
+
+/* Page basics */
+:root {
+    --bg: #f6f8fa;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --accent: #1f6feb;
+    --accent-2: #1158c7;
+    --text: #0f1724;
+    --surface-border: rgba(15, 23, 36, 0.06);
+    --header-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
+    --radius: 10px;
+    --gap: 14px;
+  }
+
+  body.dark-mode {
+    --bg: #1a1a2e;
+    --card: #16213e;
+    --muted: #b4b4b4;
+    --accent: #4a90e2;
+    --accent-2: #3a75c1;
+    --text: #ffffff;
+    --surface-border: rgba(255, 255, 255, 0.1);
+    --header-bg: rgba(26, 26, 46, 0.8);
+  }
+  
+  /* Dark mode colors */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --muted: #b4b4b4;
+      --accent: #4a90e2;
+      --accent-2: #3a75c1;
+      --text: #ffffff;
+      --surface-border: rgba(255, 255, 255, 0.1);
+      --header-bg: rgba(26, 26, 46, 0.8);
+    }
+  }
+  
+  * { box-sizing: border-box; }
+  
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Layout container */
+  header {
+    padding: 22px 18px;
+    text-align: center;
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--surface-border);
+    transition: background 0.3s ease;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.2px;
+  }
+  
+  /* Main area */
+  main {
+    max-width: 1100px;
+    margin: 22px auto;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 20px;
+  }
+  
+  /* Controls card */
+  #controls {
+    background: var(--card);
+    padding: 16px;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 6px rgba(16, 24, 40, 0.04);
+    border: 1px solid var(--surface-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    transition: background 0.3s ease;
+  }
+  
+  #controls label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  
+  .field label {
+    width: 110px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  
+  .field input[type="number"] {
+    width: 120px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--surface-border);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    font-size: 14px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  select,
+  button,
+  input[type="number"] {
+    transition: box-shadow 0.12s ease, transform 0.08s ease;
+  }
+  
+  select {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--surface-border);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Buttons */
+  button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 6px 14px rgba(31, 111, 235, 0.08);
+  }
+  
+  button:hover {
+    transform: translateY(-1px);
+    background: var(--accent-2);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  /* Right column (outputs) */
+  #outputs {
+    background: var(--card);
+    padding: 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 1px 6px rgba(16, 24, 40, 0.04);
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background 0.3s ease;
+  }
+  
+  /* Derivation area (MathJax) */
+  .math-output {
+    background: var(--bg);
+    border: 1px solid var(--surface-border);
+    padding: 1.2em;
+    border-radius: 8px;
+    min-height: 56px;
+    font-size: 16px;
+    color: var(--text);
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Numeric results */
+  #results {
+    background: rgba(15, 23, 42, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 220px;
+    overflow: auto;
+    border: 1px dashed var(--surface-border);
+    color: var(--text);
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Plot container */
+  .plot-container,
+  #plot,
+  #simplex {
+    width: 100%;
+    height: 520px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--surface-border);
+    background: var(--card);
+    transition: background 0.3s ease;
+  }
+  
+  /* Footer */
+  footer {
+    max-width: 1100px;
+    margin: 14px auto;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  
+  /* Responsive: single column on narrow screens */
+  @media (max-width: 920px) {
+    main {
+      grid-template-columns: 1fr;
+      padding: 12px;
+    }
+    #controls { order: 2; }
+    #outputs { order: 1; }
+  }
+  
+  /* Small helpers */
+  .small {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  
+  .center {
+    text-align: center;
+  }
+  
+  input[type="number"]:focus,
+  select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(31, 111, 235, 0.2);
+  }
+  
+  .actions button {
+    margin-bottom: 6px;
+  }
+  
+  #outputs h2 {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-2);
+  }
+  
+  #genotypeSelect {
+    min-width: 140px;
+    min-height: 120px;
+    padding: 6px;
+  }
+  
+  #genotypeSelect option:hover {
+    background: var(--accent);
+    color: white;
+  }
+  
+  #results::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+  
+  #results::-webkit-scrollbar-thumb {
+    background: var(--muted);
+    border-radius: 4px;
+  }
+  
+  #results::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .derivation-step {
+    margin-bottom: 15px;
+    background: var(--card);
+    border: 1px solid var(--surface-border);
+    padding: 1em;
+    border-radius: var(--radius);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .derivation-step h4 {
+    color: var(--accent-2);
+    margin: 10px 0 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .derivation-step h5 {
+    color: var(--muted);
+    margin: 8px 0 5px 0;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .allele-calc {
+    background: var(--bg);
+    padding: 10px;
+    border-radius: 6px;
+    margin: 8px 0;
+    border-left: 3px solid var(--accent);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+  
+  .actions-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .actions-row label,
+  .actions-row input,
+  .actions-row button {
+    margin-bottom: 0;
+  }
