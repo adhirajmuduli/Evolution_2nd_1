@@ -1,0 +1,6 @@
+flask
+numpy
+sympy
+plotly
+math
+werkzeug
